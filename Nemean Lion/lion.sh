@@ -8,4 +8,4 @@ cp /etc/ssh/sshd_config /etc/ssh/sshd_config.original-copy
 sed -i '' 's/# Port 22/Port 3742/' /etc/ssh/sshd_config
 
 #Restart service
-service sshd restart
+service sshd 
