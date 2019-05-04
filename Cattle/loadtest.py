@@ -5,7 +5,6 @@ from progressbar import progressbar
 import time
 import validators
 import sys
-import getpass
 import timeit
 
 if len(sys.argv) == 1:
@@ -23,11 +22,24 @@ while (ret != True):
         print('Error: please enter a valid address')
 req = input('Input number of requests: ') 
 no_req = int(req)
-#for i in progressbar(range(no_req), "requesting: ", 30):
-#    resp = requests.head(url)
-#    time.sleep(0.1)
-# 
-print(no_req)
+def bar_attack():
+    success = 0
+    failure = 0
+    size = 0
+    for i in progressbar(range(no_req), "requesting: ", 30):
+        resp = requests.head(url)
+        time.sleep(0.05)
+        if (resp.status_code < 400):
+            success += 1
+        elif (resp.status_code >= 400):
+            failure += 1 
+        size += int(resp.headers['Content-Length'])
+    size /= 1000000
+    percent_success = ((1 - (failure/success))*100)
+    print('Transaction size: ', round(size, 2), 'MB', file=f)
+    print('Succesful transactions: ', success, file=f)
+    print('Failed transactions: ', failure, file=f)
+    print('Success rate: ', percent_success, '%', file=f)
 def process_attack():
     success = 0
     failure = 0
@@ -50,7 +62,8 @@ def process_attack():
     print('Success rate: ', percent_success, '%', file=f)
     print('Time elapsed: ', round(end_time, 2), 'secs', file=f)
     print('Transaction speed: ', round(attack_speed, 2), 'trans/secs', file=f)
-process_attack()
+#process_attack()
+bar_attack()
 print('Program completed: see log.txt for details')
 #print (type(resp))
 #url = 'http://www.google.com'
