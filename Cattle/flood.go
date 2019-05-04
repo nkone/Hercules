@@ -8,25 +8,6 @@ import (
 	"time"
 )
 
-func main() {
-	if len(os.Args) != 4 {
-		fmt.Println("usage: flood no_of_attacks no_of_users url")
-	} else {
-		no_req, err := strconv.Atoi(os.Args[1])
-		if err != nil {
-			fmt.Println("Error: wrong integer input for no_of_attacks")
-			}
-		users, err := strconv.Atoi(os.Args[2])
-		if err != nil {
-				fmt.Println("Error: wrong integer input for no_of_users")
-		} else {
-				for i := 1; i <= users; i++ {
-					process_attack(no_req, os.Args[3], i)
-			}
-		}
-	}
-}
-
 func process_attack(no_req int, url string, idx int) {
 	var success, failure, i = 0, 0 ,0
 	start := time.Now()
@@ -56,3 +37,29 @@ func process_attack(no_req int, url string, idx int) {
 	fmt.Printf("Failed transactions: %v hits\n", failure)
 	fmt.Printf("Success rate: %.2f%%\n", success_rate)
 }
+
+func print_num(i int) {
+	fmt.Println(i)
+}
+func main() {
+	if len(os.Args) != 4 {
+		fmt.Println("usage: flood no_of_attacks no_of_users url")
+	} else {
+		no_req, err := strconv.Atoi(os.Args[1])
+		if err != nil {
+			fmt.Println("Error: wrong integer input for no_of_attacks")
+			}
+		users, err := strconv.Atoi(os.Args[2])
+		if err != nil {
+				fmt.Println("Error: wrong integer input for no_of_users")
+		} else {
+			fmt.Printf("Attacking the server with %v users\n\n", users)
+			for i := 1; i <= users; i++ {
+				go process_attack(no_req, os.Args[3], i)
+			}
+		}
+	}
+	var input string
+	fmt.Scanln(&input)
+}
+
