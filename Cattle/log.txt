@@ -1,0 +1,6 @@
+Transaction size:  0.64 MB
+Succesful transactions:  1000
+Failed transactions:  0
+Success rate:  100.0 %
+Time elapsed:  3.42 secs
+Transaction speed:  292.2 trans/secs
