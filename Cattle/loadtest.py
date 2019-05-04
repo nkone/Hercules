@@ -7,6 +7,7 @@ import validators
 import sys
 import timeit
 
+
 if len(sys.argv) == 1:
     f = open('man.txt')
     for line in f:
@@ -53,17 +54,19 @@ def process_attack():
             failure += 1
         size += int(resp.headers['Content-Length'])
     end_time = time.perf_counter() - start_time
+    avg_time = end_time / no_req
     attack_speed = no_req / end_time
-    percent_success = ((1 - (failure/success))*100)
+    percent_success = ((success/no_req)*100)
     size /= 1000000
     print('Transaction size: ', round(size, 2), 'MB', file=f)
     print('Succesful transactions: ', success, file=f)
     print('Failed transactions: ', failure, file=f)
     print('Success rate: ', percent_success, '%', file=f)
     print('Time elapsed: ', round(end_time, 2), 'secs', file=f)
+    print('Average time: ', round(avg_time, 2), 'secs', file = f)
     print('Transaction speed: ', round(attack_speed, 2), 'trans/secs', file=f)
-#process_attack()
-bar_attack()
+process_attack()
+#bar_attack()
 print('Program completed: see log.txt for details')
 #print (type(resp))
 #url = 'http://www.google.com'
