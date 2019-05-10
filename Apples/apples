@@ -1,0 +1,7 @@
+Generate ssh keys:
+ssh-keygen -t rsa -b 2048
+t for type, b for bits
+Put public key into the server $USER/.ssh/authorized_keys
+Multiple keys are possible for login to the same user.
+Use ssh -i $key $USER@$HOST_IP -p$PORT to connect to specific users
+or just normal ssh if keys are already set up.
