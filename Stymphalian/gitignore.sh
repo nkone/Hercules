@@ -6,7 +6,7 @@
 #    By: phtruong <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/05 10:42:22 by phtruong          #+#    #+#              #
-#    Updated: 2019/04/05 15:54:55 by phtruong         ###   ########.fr        #
+#    Updated: 2019/06/19 15:50:35 by phtruong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 RED='\033[0;31m'
@@ -27,7 +27,7 @@ else
 	echo "# Executables\n*.exe\n*.out\n*.app\n*.i*86\n*.x86_64\n*.hex\n" >> $GIT
 	echo "# Debug files\n*.dSYM/\n*.su\n*.idb\n*.pdb\n" >> $GIT
 	echo "# Kernel Module Compile Results\n*.mod*\n*.cmd\n.tmp_verions/\nmodules.order\nModule.symvers\nMkfile.old\ndkms.conf\n" >> $GIT
-	echo "# Temp files\n*.DS_Store\n*._*" >> $GIT
+	echo "# Temp files\n*.DS_Store\n*._*\n*.*.swp" >> $GIT
 fi
 	exit 0
 
